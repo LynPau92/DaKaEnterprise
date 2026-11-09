@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotización | DaKa Enterprise</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f6f7;
+        margin: 0;
+        padding: 40px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #106e5d;
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+
+      button {
+        margin-top: 20px;
+        background: #106e5d;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .btn-enviar {
+        background: #1E3A5F;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(243, 94, 243, 0.35);
+        transition: 0.3s;
+      }
+
+      .btn-enviar:hover {
+        background: #d84ad8;
+        transform: translateY(-2px);
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Solicita una Cotización</h1>
+
+      <form>
+        <label>Nombre</label>
+        <input type="text" required />
+
+        <label>Correo electrónico</label>
+        <input type="email" required />
+
+        <label>Empresa</label>
+        <input type="text" />
+
+        <label>Tipo de servicio</label>
+        <select>
+          <option>Página Web</option>
+          <option>Aplicación Móvil</option>
+          <option>Sistema Empresarial</option>
+          <option>API e Integraciones</option>
+          <option>Diseño UI/UX</option>
+        </select>
+
+        <label>Descripción del proyecto</label>
+        <textarea rows="6"></textarea>
+
+        <h2>Estimador de Precio</h2>
+
+        <label>Servicio</label>
+        <select id="servicio">
+          <option value="5000">Página Web Básica</option>
+          <option value="10000">Página Web Empresarial</option>
+          <option value="25000">Aplicación Móvil</option>
+          <option value="35000">Sistema Empresarial</option>
+          <option value="15000">API e Integraciones</option>
+        </select>
+
+        <label>Complejidad</label>
+        <select id="complejidad">
+          <option value="1">Baja</option>
+          <option value="1.5">Media</option>
+          <option value="2">Alta</option>
+        </select>
+
+        <label>Cantidad de módulos o páginas</label>
+        <input type="number" id="modulos" value="1" min="1" />
+
+        <br /><br />
+
+        <button type="button" onclick="calcularPrecio()">
+          Calcular Cotización
+        </button>
+
+        <h3 id="resultado"></h3>
+
+        <button type="submit" class="btn-enviar">Enviar Solicitud</button>
+      </form>
+    </div>
+    <script>
+      function calcularPrecio() {
+        let servicio = parseFloat(document.getElementById("servicio").value);
+        let complejidad = parseFloat(
+          document.getElementById("complejidad").value,
+        );
+        let modulos = parseInt(document.getElementById("modulos").value);
+
+        let total = servicio * complejidad * modulos;
+
+        document.getElementById("resultado").innerHTML =
+          "Precio estimado: DOP$ " + total.toLocaleString();
+      }
+    </script>
+  </body>
+</html>
